@@ -1,4 +1,6 @@
 /// Dart implementation of the gRPC helloworld.Greeter server.
+import 'dart:io';
+
 import 'package:grpc/grpc.dart';
 import 'package:grpc_analysis_server/src/generated/helloworld.pbgrpc.dart';
 
@@ -21,6 +23,8 @@ Future<void> main(List<String> args) async {
     const <Interceptor>[],
     CodecRegistry(codecs: const [GzipCodec(), IdentityCodec()]),
   );
-  await server.serve(port: 50051);
+  final port = Platform.environment['PORT'] ?? '8080';
+  // print(port);
+  await server.serve(port: int.parse(port));
   print('Server listening on port ${server.port}...');
 }

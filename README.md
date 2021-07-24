@@ -4,6 +4,23 @@ The Dart analysis server on Cloud Run via gRPC.
 
 [Project Notes](https://www.notion.so/adventures-in/Remote-Analysis-Server-2149ad05dccd46ed94f4ee155d749316)
 
+First step:
+- get [grpc-dart/example/helloworld](https://github.com/grpc/grpc-dart/tree/master/example/helloworld) running on Cloud Run
+
+### Run locally
+
+Start the server:
+
+```sh
+$ dart bin/server.dart
+```
+
+Likewise, to run the client:
+
+```sh
+$ dart bin/client.dart
+```
+
 ### Regenerate the stubs
 
 If you have made changes to the message or service definition in
