@@ -24,7 +24,6 @@ Future<void> main(List<String> args) async {
     CodecRegistry(codecs: const [GzipCodec(), IdentityCodec()]),
   );
   final port = Platform.environment['PORT'] ?? '8080';
-  // print(port);
   await server.serve(port: int.parse(port));
   print('Server listening on port ${server.port}...');
 }

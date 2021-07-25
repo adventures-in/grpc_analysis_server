@@ -7,7 +7,7 @@ The Dart analysis server on Cloud Run via gRPC.
 First step:
 - get [grpc-dart/example/helloworld](https://github.com/grpc/grpc-dart/tree/master/example/helloworld) running on Cloud Run
 
-### Run locally
+## Run locally as a command line app
 
 Start the server:
 
@@ -20,6 +20,27 @@ Likewise, to run the client:
 ```sh
 $ dart bin/client.dart
 ```
+
+## Run locally in a (simulated) hosted environment
+
+Use the [Docker](https://code.visualstudio.com/docs/containers/overview) extension to build and run a container
+
+<details>
+<summary><b>Or for command line wizards</b></summary>
+
+```sh
+docker build -t web_socket_analysis_server_image .
+docker run -it -p 8080:8080 --name web_socket_analysis_server web_socket_analysis_server_image
+```
+
+Clean up:
+
+```bash
+docker rm -f web_socket_analysis_server        # remove the container
+docker image rm web_socket_analysis_server_image   # remove the image
+```
+
+</details>
 
 ### Regenerate the stubs
 
