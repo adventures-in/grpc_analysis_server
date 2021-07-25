@@ -7,6 +7,7 @@ COPY . .
 RUN dart pub get --offline
 
 # ENV PORT 443
-# EXPOSE 443
+
+EXPOSE 8080
 
 ENTRYPOINT ["/usr/lib/dart/bin/dart", "/app/bin/server.dart"]
