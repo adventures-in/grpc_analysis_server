@@ -2,15 +2,15 @@
 import 'package:grpc/grpc.dart';
 import 'package:grpc_analysis_server/src/generated/helloworld.pbgrpc.dart';
 
-// const host = 'https://grpc-analysis-server-3rru3aooga-uc.a.run.app';
-const host = 'localhost';
+const host = 'grpc-analysis-server-3rru3aooga-uc.a.run.app';
+// const host = 'localhost';
 
 Future<void> main(List<String> args) async {
   final channel = ClientChannel(
     host,
-    port: 8080, // 50051
+    port: 443,
     options: ChannelOptions(
-      credentials: ChannelCredentials.insecure(),
+      credentials: ChannelCredentials.secure(),
       codecRegistry:
           CodecRegistry(codecs: const [GzipCodec(), IdentityCodec()]),
     ),
