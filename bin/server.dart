@@ -1,4 +1,6 @@
 /// Dart implementation of the gRPC helloworld.Greeter server.
+import 'dart:io';
+
 import 'package:grpc/grpc.dart';
 import 'package:grpc_analysis_server/src/generated/helloworld.pbgrpc.dart';
 
@@ -16,11 +18,16 @@ class GreeterService extends GreeterServiceBase {
 }
 
 Future<void> main(List<String> args) async {
-  final server = Server(
-    [GreeterService()],
-    const <Interceptor>[],
-    CodecRegistry(codecs: const [GzipCodec(), IdentityCodec()]),
-  );
-  await server.serve(port: 50051);
-  print('Server listening on port ${server.port}...');
+  try {
+    final server = Server(
+      [GreeterService()],
+      const <Interceptor>[],
+      CodecRegistry(codecs: const [GzipCodec(), IdentityCodec()]),
+    );
+    final portString = Platform.environment['PORT'] ?? '8080';
+    await server.serve(port: int.parse(portString));
+    print('Server listening on port ${server.port}...');
+  } catch (error, trace) {
+    print('$error\n\n$trace');
+  }
 }
