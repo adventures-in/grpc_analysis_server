@@ -7,6 +7,10 @@ The Dart analysis server on Cloud Run via gRPC.
 First step:
 - get [grpc-dart/example/helloworld](https://github.com/grpc/grpc-dart/tree/master/example/helloworld) running on Cloud Run
 
+## Review Metrics 
+
+[Metrics – Cloud Run – coder-up](https://console.cloud.google.com/run/detail/us-central1/grpc-analysis-server/metrics?folder=&organizationId=&project=coder-up)
+
 ## Run locally as a command line app
 
 Start the server:
