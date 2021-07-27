@@ -6,14 +6,17 @@ import 'common.dart';
 import 'generated/route_guide.pb.dart';
 import 'generated/route_guide.pbgrpc.dart';
 
+const host = 'grpc-analysis-server-3rru3aooga-uc.a.run.app';
+// const host = 'localhost';
+
 class Client {
   late RouteGuideClient stub;
 
   Future<void> main(List<String> args) async {
-    final channel = ClientChannel('127.0.0.1',
-        port: 8080,
+    final channel = ClientChannel(host,
+        port: 443,
         options:
-            const ChannelOptions(credentials: ChannelCredentials.insecure()));
+            const ChannelOptions(credentials: ChannelCredentials.secure()));
     stub = RouteGuideClient(channel,
         options: CallOptions(timeout: Duration(seconds: 30)));
     // Run all of the demos in order.
