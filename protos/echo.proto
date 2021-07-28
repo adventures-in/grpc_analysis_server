@@ -1,0 +1,14 @@
+syntax = "proto3";
+package echo;
+
+service Echo {
+  rpc Setup(stream RequestString) returns (stream ResponseString) {}
+}
+
+message RequestString {
+  string value = 1;
+}
+
+message ResponseString {
+  string value = 1;
+}

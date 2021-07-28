@@ -1,0 +1,74 @@
+syntax = "proto3";
+package analysis;
+
+service Analysis {
+  rpc Analyze(stream AnalysisRequest) returns (stream AnalysisResult) {}
+}
+
+message AnalysisRequest {
+  string contents = 1;
+}
+
+message AnalysisResult {
+  repeated ErrorCode errorCodes = 1; 
+}
+
+message ErrorCode {
+  string message = 1;
+  string name = 2;
+  string uniqueName = 3;
+  string correction = 4;
+  enum ErrorSeverity {
+    NONE = 0;
+    INFO = 1;
+    WARNING = 2;
+    ERROR = 3;
+  }
+  ErrorSeverity errorSeverity = 5;
+  bool hasPublishedDocs = 6;
+  bool isUnresolvedIdentifier = 7;
+  enum ErrorType {
+    TODO = 0;
+    HINT = 1;
+    COMPILE_TIME_ERROR = 2;
+    CHECKED_MODE_COMPILE_TIME_ERROR = 3;
+    STATIC_WARNING = 4;
+    STATIC_TYPE_WARNING = 5;
+    SYNTACTIC_ERROR = 6;
+    LINT = 7;
+  }
+  ErrorType type = 8;
+}
+
+message DiagnosticMessage {
+  string filePath = 1;
+
+  /// The length of the source range associated with this message.
+  int32 length = 2;
+
+  /// The zero-based offset from the start of the file to the beginning of the
+  /// source range associated with this message.
+  int32 offset = 3;
+
+  /// The URL associated with this diagnostic message, if any.
+  string url = 4;
+
+  string messageText = 5;
+}
+
+message AnalysisError {
+
+  ErrorCode errorCode = 1;
+
+  /// The message describing the problem.
+  DiagnosticMessage problemMessage = 2;
+
+  /// The context messages associated with the problem. This list will be empty
+  /// if there are no context messages.
+  repeated DiagnosticMessage contextMessages = 3;
+
+  string correction = 4;
+
+  /// The source in which the error occurred, or `null` if unknown.
+  // Source source = 5;
+}

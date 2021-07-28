@@ -33,15 +33,15 @@ Use the [Docker](https://code.visualstudio.com/docs/containers/overview) extensi
 <summary><b>Or for command line wizards</b></summary>
 
 ```sh
-docker build -t web_socket_analysis_server_image .
-docker run -it -p 8080:8080 --name web_socket_analysis_server web_socket_analysis_server_image
+docker build -t server_image .
+docker run -it -p 8080:8080 --name server server_image
 ```
 
 Clean up:
 
 ```bash
-docker rm -f web_socket_analysis_server        # remove the container
-docker image rm web_socket_analysis_server_image   # remove the image
+docker rm -f server        # remove the container
+docker image rm server_image   # remove the image
 ```
 
 </details>
@@ -68,5 +68,5 @@ already done so.
 You can now regenerate the Dart files by running
 
 ```sh
-$ protoc --dart_out=grpc:lib/src/generated -Iprotos protos/helloworld.proto
+$ protoc --dart_out=grpc:lib/src/generated -Iprotos protos/analysis.proto
 ```
