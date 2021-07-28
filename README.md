@@ -16,13 +16,13 @@ First step:
 Start the server:
 
 ```sh
-$ dart bin/server.dart
+$ dart bin/server_app.dart
 ```
 
 Likewise, to run the client:
 
 ```sh
-$ dart bin/client.dart
+$ dart bin/client_app.dart
 ```
 
 ## Run locally in a (simulated) hosted environment

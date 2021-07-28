@@ -2,7 +2,7 @@ syntax = "proto3";
 package echo;
 
 service Echo {
-  rpc Setup(stream RequestString) returns (stream ResponseString) {}
+  rpc Initiate(stream RequestString) returns (stream ResponseString) {}
 }
 
 message RequestString {

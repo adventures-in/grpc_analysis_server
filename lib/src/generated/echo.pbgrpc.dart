@@ -14,9 +14,9 @@ import 'echo.pb.dart' as $0;
 export 'echo.pb.dart';
 
 class EchoClient extends $grpc.Client {
-  static final _$setup =
+  static final _$initiate =
       $grpc.ClientMethod<$0.RequestString, $0.ResponseString>(
-          '/echo.Echo/Setup',
+          '/echo.Echo/Initiate',
           ($0.RequestString value) => value.writeToBuffer(),
           ($core.List<$core.int> value) => $0.ResponseString.fromBuffer(value));
 
@@ -25,10 +25,10 @@ class EchoClient extends $grpc.Client {
       $core.Iterable<$grpc.ClientInterceptor>? interceptors})
       : super(channel, options: options, interceptors: interceptors);
 
-  $grpc.ResponseStream<$0.ResponseString> setup(
+  $grpc.ResponseStream<$0.ResponseString> initiate(
       $async.Stream<$0.RequestString> request,
       {$grpc.CallOptions? options}) {
-    return $createStreamingCall(_$setup, request, options: options);
+    return $createStreamingCall(_$initiate, request, options: options);
   }
 }
 
@@ -37,14 +37,14 @@ abstract class EchoServiceBase extends $grpc.Service {
 
   EchoServiceBase() {
     $addMethod($grpc.ServiceMethod<$0.RequestString, $0.ResponseString>(
-        'Setup',
-        setup,
+        'Initiate',
+        initiate,
         true,
         true,
         ($core.List<$core.int> value) => $0.RequestString.fromBuffer(value),
         ($0.ResponseString value) => value.writeToBuffer()));
   }
 
-  $async.Stream<$0.ResponseString> setup(
+  $async.Stream<$0.ResponseString> initiate(
       $grpc.ServiceCall call, $async.Stream<$0.RequestString> request);
 }

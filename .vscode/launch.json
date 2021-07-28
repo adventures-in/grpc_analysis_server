@@ -8,13 +8,13 @@
       "name": "client",
       "request": "launch",
       "type": "dart",
-      "program": "bin/client.dart"
+      "program": "bin/client_app.dart"
     },
     {
       "name": "server",
       "request": "launch",
       "type": "dart",
-      "program": "bin/server.dart"
+      "program": "bin/server_app.dart"
     }
   ]
 }

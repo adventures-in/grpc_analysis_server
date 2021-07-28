@@ -7,4 +7,4 @@ COPY . .
 RUN dart pub get --offline
 
 EXPOSE 8080
-ENTRYPOINT ["/usr/lib/dart/bin/dart", "/app/bin/server.dart"]
+ENTRYPOINT ["/usr/lib/dart/bin/dart", "/app/bin/server_app.dart"]

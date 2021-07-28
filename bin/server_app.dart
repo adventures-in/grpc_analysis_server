@@ -1,8 +1,12 @@
 import 'package:grpc/grpc.dart' as grpc;
 import 'package:grpc_analysis_server/src/generated/echo.pbgrpc.dart';
 
+Future<void> main(List<String> args) async {
+  await Server().serve();
+}
+
 class Server {
-  Future<void> main(List<String> args) async {
+  Future<void> serve() async {
     final server = grpc.Server([EchoService()]);
     await server.serve(port: 8080);
     print('Server listening on port ${server.port}...');
@@ -11,10 +15,9 @@ class Server {
 
 class EchoService extends EchoServiceBase {
   @override
-  Stream<ResponseString> setup(
-      grpc.ServiceCall call, Stream<RequestString> request) {
-    return request.map((event) => ResponseString(value: event.value));
-  }
+  Stream<ResponseString> initiate(
+          grpc.ServiceCall call, Stream<RequestString> request) =>
+      request.map((event) => ResponseString(value: event.value));
 }
 
 // class AnalysisResources {
