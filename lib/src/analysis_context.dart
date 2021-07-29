@@ -10,7 +10,7 @@ class Analysis {
   late AnalysisContext _context;
 
   Analysis() {
-    FileSystemEntity entity = Directory.current;
+    FileSystemEntity entity = Directory('package');
 
     final collection = AnalysisContextCollection(
         includedPaths: [entity.absolute.path],
@@ -24,7 +24,8 @@ class Analysis {
   Future<List<AnalysisError>> detectErrors() async {
     print('Analyzing ${_context.contextRoot.root.path} ...');
 
-    final errorsResult = await _context.currentSession.getErrors2('test.dart');
+    final errorsResult =
+        await _context.currentSession.getErrors2('/package/lib/file.dart');
     return (errorsResult is ErrorsResult) ? errorsResult.errors : [];
   }
 }
